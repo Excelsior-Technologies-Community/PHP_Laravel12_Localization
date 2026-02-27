@@ -1,59 +1,217 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# PHP_Laravel12_Localization
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://img.shields.io/badge/Laravel-12.x-red?style=for-the-badge&logo=laravel">
+  <img src="https://img.shields.io/badge/Localization-Multi--Language-blue?style=for-the-badge">
+  <img src="https://img.shields.io/badge/I18N-Support-success?style=for-the-badge">
 </p>
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+##  Overview
+Laravel provides a powerful **Localization System (I18N)** that helps you translate your application into multiple languages.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This documentation demonstrates:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+✔ Multi-language support (English, French, German)  
+✔ Creating language files  
+✔ Creating localization controller  
+✔ Route-based language selection  
+✔ Testing translations  
 
-## Learning Laravel
+###  Supported Languages
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+| Language | Code |
+|----------|------|
+| 🇬🇧 English | `en` |
+| 🇫🇷 French  | `fr` |
+| 🇩🇪 German  | `de` |
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+##  Features
+- Multi-language support (EN, FR, DE)
+- Dynamic locale switching
+- Simple translation structure
+- Fallback locale support
+- Works with Blade, Controllers & Routes
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+#  Folder Structure
+```
+resources/
+└── lang/
+     ├── en/
+     │    └── lang.php
+     ├── fr/
+     │    └── lang.php
+     └── de/
+          └── lang.php
 
-### Premium Partners
+app/
+└── Http/
+     └── Controllers/
+          └── LocalizationController.php
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+routes/
+└── web.php
 
-## Contributing
+.env
+README.md
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+#  Step 1 — Install Laravel
+```bash
+composer create-project laravel/laravel LaravelLocalization
+cd LaravelLocalization
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+#  Step 2 — Configure .env
+```
+APP_NAME=Laravel
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://127.0.0.1:8000
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+APP_LOCALE=en
+APP_FALLBACK_LOCALE=en
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#  Step 3 — Create Language Files
+
+## 🇬🇧 English (en)
+ `resources/lang/en/lang.php`
+```php
+<?php
+
+return [
+    'msg' => 'Laravel Internationalization example.'
+];
+```
+
+## 🇫🇷 French (fr)
+ `resources/lang/fr/lang.php`
+```php
+<?php
+
+return [
+    'msg' => 'Exemple Laravel internationalisation.'
+];
+```
+
+## 🇩🇪 German (de)
+ `resources/lang/de/lang.php`
+```php
+<?php
+
+return [
+    'msg' => 'Laravel Internationalisierung Beispiel.'
+];
+```
+
+---
+
+#  Step 4 — Create Localization Controller
+
+ `app/Http/Controllers/LocalizationController.php`
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class LocalizationController extends Controller
+{
+    public function index(Request $request, $locale)
+    {
+        // Set application locale
+        app()->setLocale($locale);
+
+        // Return translated text
+        return trans('lang.msg');
+    }
+}
+```
+
+---
+
+#  Step 5 — Add Route
+
+ `routes/web.php`
+```php
+use App\Http\Controllers\LocalizationController;
+
+Route::get('localization/{locale}', [LocalizationController::class, 'index']);
+```
+
+Supported languages:  
+✔ en  
+✔ fr  
+✔ de  
+
+---
+
+#  Step 6 — Start Server
+```bash
+php artisan serve
+```
+
+---
+
+#  Step 7 — Test in Browser
+
+### 🇬🇧 English  
+URL:
+```
+http://127.0.0.1:8000/localization/en
+```
+Output:
+```
+Laravel Internationalization example.
+```
+<img width="418" height="97" alt="Screenshot 2025-12-10 171006" src="https://github.com/user-attachments/assets/8d91fa6d-0cd4-4206-bf98-8810ef38784b" />
+
+
+### 🇫🇷 French  
+URL:
+```
+http://127.0.0.1:8000/localization/fr
+```
+Output:
+```
+Exemple Laravel internationalisation.
+```
+<img width="391" height="103" alt="Screenshot 2025-12-10 171013" src="https://github.com/user-attachments/assets/59dc1775-c6ab-47f8-b771-6a2782360178" />
+
+
+### 🇩🇪 German  
+URL:
+```
+http://127.0.0.1:8000/localization/de
+```
+Output:
+```
+Laravel Internationalisierung Beispiel.
+```
+<img width="385" height="98" alt="Screenshot 2025-12-10 171022" src="https://github.com/user-attachments/assets/eac080d1-2bac-4997-a2ed-6bce6e049705" />
+
+
+---
+
+#  Localization Working Successfully!
+Your localization system is now:
+
+✔ Multi-language ready  
+✔ Easy to expand  
+✔ Works in routes, controllers, views  
+
+---
+
+
