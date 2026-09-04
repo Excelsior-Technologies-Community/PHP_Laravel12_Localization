@@ -6,12 +6,56 @@ use Illuminate\Http\Request;
 
 class LocalizationController extends Controller
 {
-    public function index(Request $request, $locale)
+    /**
+     * Display localization dashboard.
+     */
+    public function index()
     {
-        // Set application locale
+        return view('localization');
+    }
+
+    /**
+     * Change application language manually.
+     */
+    public function changeLanguage(Request $request, string $locale)
+    {
+        $supportedLocales = [
+            'en',
+            'fr',
+            'de',
+        ];
+
+        if (!in_array($locale, $supportedLocales, true)) {
+
+            return redirect()
+                ->route('localization.index')
+                ->with(
+                    'error',
+                    __('lang.invalid_language')
+                );
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Store manually selected language
+        |--------------------------------------------------------------------------
+        */
+
+        session(['locale' => $locale]);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Apply immediately
+        |--------------------------------------------------------------------------
+        */
+
         app()->setLocale($locale);
 
-        // Display translated message
-        echo trans('lang.msg');
+        return redirect()
+            ->route('localization.index')
+            ->with(
+                'success',
+                __('lang.language_changed')
+            );
     }
 }
