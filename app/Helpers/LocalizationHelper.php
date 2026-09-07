@@ -69,6 +69,7 @@ if (!function_exists('getSupportedLocales')) {
             'hi',
             'ar',
             'gu',
+            
         ];
     }
 }
@@ -89,3 +90,4 @@ if (!function_exists('isRtlLocale')) {
         );
     }
 }
+
