@@ -69,7 +69,7 @@ if (!function_exists('getSupportedLocales')) {
             'hi',
             'ar',
             'gu',
-            
+
         ];
     }
 }
