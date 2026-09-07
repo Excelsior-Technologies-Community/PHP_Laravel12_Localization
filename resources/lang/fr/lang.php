@@ -1,29 +1,47 @@
 <?php
 
 return [
-    'msg'               => 'Exemple Laravel internationalisation.',
-    'welcome'           => 'Bienvenue dans Laravel Localisation',
-    'select_language'   => 'Choisir la langue',
-    'home'              => 'Accueil',
-    'admin'             => 'Panneau Admin',
-    'current_language'  => 'Langue actuelle',
-    'flash_success'     => 'Langue changée avec succès!',
-    'items_count'       => '{0} Aucun article|{1} :count article|[2,*] :count articles',
-    'current_date'      => 'Date actuelle',
-    'current_time'      => 'Heure actuelle',
-    'price_label'       => 'Prix',
-    'db_translations'   => 'Traductions de la base de données',
-    'key'               => 'Clé',
-    'value'             => 'Valeur',
-    'language'          => 'Langue',
-    'add_translation'   => 'Ajouter une traduction',
-    'save'              => 'Sauvegarder',
-    'delete'            => 'Supprimer',
-    'edit'              => 'Modifier',
-    'actions'           => 'Actions',
-    'translation_saved' => 'Traduction sauvegardée!',
-    'translation_updated' => 'Traduction mise à jour!',
-    'translation_deleted' => 'Traduction supprimée!',
-    'browser_detected'  => 'Langue du navigateur détectée automatiquement',
-    'rtl_note'          => 'Cette langue prend en charge la direction du texte de droite à gauche.',
+
+    'msg' => 'Exemple Laravel internationalisation.',
+
+    'page_title' => 'Localisation Laravel',
+
+    'page_description' => 'Démonstration d’une application multilingue',
+
+    'current_language' => 'Langue actuelle',
+
+    'select_language' => 'Sélectionner la langue',
+
+    'english' => 'Anglais',
+
+    'french' => 'Français',
+
+    'german' => 'Allemand',
+
+    'translated_message_label' => 'Message traduit',
+
+    'locale' => 'Langue de l’application',
+
+    'fallback_locale' => 'Langue de secours',
+
+    'session_language' => 'Langue de session',
+
+    'locale_formatting' => 'Formatage selon la langue',
+
+    'formatted_date' => 'Date formatée',
+
+    'formatted_number' => 'Nombre formaté',
+
+    'browser_detection' => 'Détection automatique de la langue du navigateur',
+
+    'browser_detection_description' => 'La langue de votre navigateur est automatiquement détectée lors de la première visite. Votre langue sélectionnée manuellement reste prioritaire.',
+
+    'browser_language' => 'Langue du navigateur',
+
+    'language_changed' => 'La langue a été modifiée avec succès.',
+
+    'invalid_language' => 'La langue sélectionnée n’est pas prise en charge.',
+
+    'footer' => 'Démonstration de la localisation Laravel',
+
 ];
