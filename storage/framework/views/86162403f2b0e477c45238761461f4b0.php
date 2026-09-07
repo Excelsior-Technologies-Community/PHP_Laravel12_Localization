@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html
-    lang="{{ app()->getLocale() }}"
-    dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+    lang="<?php echo e(app()->getLocale()); ?>"
+    dir="<?php echo e(app()->getLocale() === 'ar' ? 'rtl' : 'ltr'); ?>">
 
 <head>
 
@@ -19,14 +19,14 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet">
 
-    @if(app()->getLocale() === 'ar')
+    <?php if(app()->getLocale() === 'ar'): ?>
     <style>
         body {
             direction: rtl;
             text-align: right;
         }
     </style>
-    @endif
+    <?php endif; ?>
 
 </head>
 
@@ -34,9 +34,7 @@
 
     <div class="container py-5">
 
-        {{-- =========================================================
-         PAGE HEADER
-    ========================================================== --}}
+        
 
         <div class="d-flex justify-content-between align-items-center mb-4">
 
@@ -55,7 +53,7 @@
             <div>
 
                 <a
-                    href="{{ route('localization.index') }}"
+                    href="<?php echo e(route('localization.index')); ?>"
                     class="btn btn-dark">
 
                     Home
@@ -67,15 +65,14 @@
         </div>
 
 
-        {{-- =========================================================
-         SUCCESS MESSAGE
-    ========================================================== --}}
+        
 
-        @if(session('success'))
+        <?php if(session('success')): ?>
 
         <div class="alert alert-success alert-dismissible fade show">
 
-            {{ session('success') }}
+            <?php echo e(session('success')); ?>
+
 
             <button
                 type="button"
@@ -85,18 +82,17 @@
 
         </div>
 
-        @endif
+        <?php endif; ?>
 
 
-        {{-- =========================================================
-         ERROR MESSAGE
-    ========================================================== --}}
+        
 
-        @if(session('error'))
+        <?php if(session('error')): ?>
 
         <div class="alert alert-danger alert-dismissible fade show">
 
-            {{ session('error') }}
+            <?php echo e(session('error')); ?>
+
 
             <button
                 type="button"
@@ -106,12 +102,10 @@
 
         </div>
 
-        @endif
+        <?php endif; ?>
 
 
-        {{-- =========================================================
-         SEARCH + FILTER + ACTIONS
-    ========================================================== --}}
+        
 
         <div class="card shadow-sm mb-4">
 
@@ -119,11 +113,11 @@
 
                 <form
                     method="GET"
-                    action="{{ route('admin.index') }}">
+                    action="<?php echo e(route('admin.index')); ?>">
 
                     <div class="row g-3 align-items-end">
 
-                        {{-- Search --}}
+                        
 
                         <div class="col-md-5">
 
@@ -134,14 +128,14 @@
                             <input
                                 type="text"
                                 name="search"
-                                value="{{ request('search') }}"
+                                value="<?php echo e(request('search')); ?>"
                                 class="form-control"
                                 placeholder="Search key or value...">
 
                         </div>
 
 
-                        {{-- Language --}}
+                        
 
                         <div class="col-md-3">
 
@@ -159,43 +153,43 @@
 
                                 <option
                                     value="en"
-                                    {{ request('locale') === 'en' ? 'selected' : '' }}>
+                                    <?php echo e(request('locale') === 'en' ? 'selected' : ''); ?>>
                                     EN
                                 </option>
 
                                 <option
                                     value="fr"
-                                    {{ request('locale') === 'fr' ? 'selected' : '' }}>
+                                    <?php echo e(request('locale') === 'fr' ? 'selected' : ''); ?>>
                                     FR
                                 </option>
 
                                 <option
                                     value="de"
-                                    {{ request('locale') === 'de' ? 'selected' : '' }}>
+                                    <?php echo e(request('locale') === 'de' ? 'selected' : ''); ?>>
                                     DE
                                 </option>
 
                                 <option
                                     value="es"
-                                    {{ request('locale') === 'es' ? 'selected' : '' }}>
+                                    <?php echo e(request('locale') === 'es' ? 'selected' : ''); ?>>
                                     ES
                                 </option>
 
                                 <option
                                     value="hi"
-                                    {{ request('locale') === 'hi' ? 'selected' : '' }}>
+                                    <?php echo e(request('locale') === 'hi' ? 'selected' : ''); ?>>
                                     HI
                                 </option>
 
                                 <option
                                     value="ar"
-                                    {{ request('locale') === 'ar' ? 'selected' : '' }}>
+                                    <?php echo e(request('locale') === 'ar' ? 'selected' : ''); ?>>
                                     AR
                                 </option>
 
                                 <option
                                     value="gu"
-                                    {{ request('locale') === 'gu' ? 'selected' : '' }}>
+                                    <?php echo e(request('locale') === 'gu' ? 'selected' : ''); ?>>
                                     GU
                                 </option>
 
@@ -204,7 +198,7 @@
                         </div>
 
 
-                        {{-- Search Button --}}
+                        
 
                         <div class="col-md-2">
 
@@ -219,12 +213,12 @@
                         </div>
 
 
-                        {{-- Reset --}}
+                        
 
                         <div class="col-md-2">
 
                             <a
-                                href="{{ route('admin.index') }}"
+                                href="<?php echo e(route('admin.index')); ?>"
                                 class="btn btn-secondary w-100">
 
                                 Reset
@@ -238,7 +232,7 @@
                 </form>
 
 
-                {{-- Action Buttons --}}
+                
 
                 <div class="mt-3 d-flex gap-2 flex-wrap">
 
@@ -254,7 +248,7 @@
 
 
                     <a
-                        href="{{ route('admin.export') }}"
+                        href="<?php echo e(route('admin.export')); ?>"
                         class="btn btn-outline-primary">
 
                         Export CSV
@@ -263,7 +257,7 @@
 
 
                     <a
-                        href="{{ route('admin.cache.clear') }}"
+                        href="<?php echo e(route('admin.cache.clear')); ?>"
                         class="btn btn-outline-warning">
 
                         Clear Cache
@@ -277,9 +271,7 @@
         </div>
 
 
-        {{-- =========================================================
-         TRANSLATION TABLE
-    ========================================================== --}}
+        
 
         <div class="card shadow-sm">
 
@@ -293,7 +285,8 @@
 
                     <span class="badge bg-primary">
 
-                        {{ $translations->total() }}
+                        <?php echo e($translations->total()); ?>
+
 
                         Records
 
@@ -336,20 +329,22 @@
 
                         <tbody>
 
-                            @forelse($translations as $translation)
+                            <?php $__empty_1 = true; $__currentLoopData = $translations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $translation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
 
                             <tr>
 
 
                                 <td>
-                                    {{ $translations->firstItem() + $loop->index }}
+                                    <?php echo e($translations->firstItem() + $loop->index); ?>
+
                                 </td>
 
                                 <td>
 
                                     <span class="badge bg-info text-dark">
 
-                                        {{ strtoupper($translation->locale) }}
+                                        <?php echo e(strtoupper($translation->locale)); ?>
+
 
                                     </span>
 
@@ -358,14 +353,16 @@
                                 <td>
 
                                     <code>
-                                        {{ $translation->key }}
+                                        <?php echo e($translation->key); ?>
+
                                     </code>
 
                                 </td>
 
                                 <td>
 
-                                    {{ $translation->value }}
+                                    <?php echo e($translation->value); ?>
+
 
                                 </td>
 
@@ -373,29 +370,29 @@
 
                                     <div class="d-flex gap-2">
 
-                                        {{-- Edit --}}
+                                        
 
                                         <button
                                             type="button"
                                             class="btn btn-sm btn-primary"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#editTranslation{{ $translation->id }}">
+                                            data-bs-target="#editTranslation<?php echo e($translation->id); ?>">
 
                                             Edit
 
                                         </button>
 
 
-                                        {{-- Delete --}}
+                                        
 
                                         <form
                                             method="POST"
-                                            action="{{ route('admin.destroy', $translation) }}"
+                                            action="<?php echo e(route('admin.destroy', $translation)); ?>"
                                             onsubmit="return confirm('Are you sure you want to delete this translation?');">
 
-                                            @csrf
+                                            <?php echo csrf_field(); ?>
 
-                                            @method('DELETE')
+                                            <?php echo method_field('DELETE'); ?>
 
                                             <button
                                                 type="submit"
@@ -414,13 +411,11 @@
                             </tr>
 
 
-                            {{-- =================================================
-                                 EDIT MODAL
-                            ================================================== --}}
+                            
 
                             <div
                                 class="modal fade"
-                                id="editTranslation{{ $translation->id }}"
+                                id="editTranslation<?php echo e($translation->id); ?>"
                                 tabindex="-1"
                                 aria-hidden="true">
 
@@ -445,11 +440,11 @@
 
                                         <form
                                             method="POST"
-                                            action="{{ route('admin.update', $translation) }}">
+                                            action="<?php echo e(route('admin.update', $translation)); ?>">
 
-                                            @csrf
+                                            <?php echo csrf_field(); ?>
 
-                                            @method('PUT')
+                                            <?php echo method_field('PUT'); ?>
 
 
                                             <div class="modal-body">
@@ -463,7 +458,7 @@
                                                     <input
                                                         type="text"
                                                         class="form-control"
-                                                        value="{{ strtoupper($translation->locale) }}"
+                                                        value="<?php echo e(strtoupper($translation->locale)); ?>"
                                                         disabled>
 
                                                 </div>
@@ -478,7 +473,7 @@
                                                     <input
                                                         type="text"
                                                         class="form-control"
-                                                        value="{{ $translation->key }}"
+                                                        value="<?php echo e($translation->key); ?>"
                                                         disabled>
 
                                                 </div>
@@ -494,7 +489,7 @@
                                                         name="value"
                                                         class="form-control"
                                                         rows="4"
-                                                        required>{{ $translation->value }}</textarea>
+                                                        required><?php echo e($translation->value); ?></textarea>
 
                                                 </div>
 
@@ -530,7 +525,7 @@
 
                             </div>
 
-                            @empty
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
 
                             <tr>
 
@@ -544,7 +539,7 @@
 
                             </tr>
 
-                            @endforelse
+                            <?php endif; ?>
 
                         </tbody>
 
@@ -553,45 +548,44 @@
                 </div>
 
 
-                {{-- =========================================================
-                 NUMERIC PAGINATION ONLY
-            ========================================================== --}}
+                
 
-                @if($translations->hasPages())
+                <?php if($translations->hasPages()): ?>
 
                 <div class="d-flex justify-content-center mt-4">
 
                     <ul class="pagination mb-0">
 
-                        @for(
+                        <?php for(
                         $page = 1;
                         $page <= $translations->lastPage();
                             $page++
-                            )
+                            ): ?>
 
                             <li
                                 class="page-item
-                                {{ $translations->currentPage() == $page
+                                <?php echo e($translations->currentPage() == $page
                                     ? 'active'
-                                    : '' }}">
+                                    : ''); ?>">
 
                                 <a
                                     class="page-link"
-                                    href="{{ $translations->url($page) }}">
+                                    href="<?php echo e($translations->url($page)); ?>">
 
-                                    {{ $page }}
+                                    <?php echo e($page); ?>
+
 
                                 </a>
 
                             </li>
 
-                            @endfor
+                            <?php endfor; ?>
 
                     </ul>
 
                 </div>
 
-                @endif
+                <?php endif; ?>
 
             </div>
 
@@ -600,9 +594,7 @@
     </div>
 
 
-    {{-- =========================================================
-     ADD TRANSLATION MODAL
-========================================================== --}}
+    
 
     <div
         class="modal fade"
@@ -631,14 +623,14 @@
 
                 <form
                     method="POST"
-                    action="{{ route('admin.store') }}">
+                    action="<?php echo e(route('admin.store')); ?>">
 
-                    @csrf
+                    <?php echo csrf_field(); ?>
 
 
                     <div class="modal-body">
 
-                        {{-- Locale --}}
+                        
 
                         <div class="mb-3">
 
@@ -688,7 +680,7 @@
                         </div>
 
 
-                        {{-- Key --}}
+                        
 
                         <div class="mb-3">
 
@@ -706,7 +698,7 @@
                         </div>
 
 
-                        {{-- Value --}}
+                        
 
                         <div class="mb-3">
 
@@ -762,4 +754,4 @@
 
 </body>
 
-</html>
+</html><?php /**PATH D:\xampp\htdocs\PHP_Laravel12_Localization\resources\views/admin.blade.php ENDPATH**/ ?>
