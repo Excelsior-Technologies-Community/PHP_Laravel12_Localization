@@ -1,4 +1,29 @@
 <?php
+
 return [
-    'msg' => 'Laravel Internationalisierung Beispiel.'
+    'msg'               => 'Laravel Internationalisierung Beispiel.',
+    'welcome'           => 'Willkommen bei Laravel Lokalisierung',
+    'select_language'   => 'Sprache auswählen',
+    'home'              => 'Startseite',
+    'admin'             => 'Admin-Panel',
+    'current_language'  => 'Aktuelle Sprache',
+    'flash_success'     => 'Sprache erfolgreich geändert!',
+    'items_count'       => '{0} Keine Artikel|{1} :count Artikel|[2,*] :count Artikel',
+    'current_date'      => 'Aktuelles Datum',
+    'current_time'      => 'Aktuelle Uhrzeit',
+    'price_label'       => 'Preis',
+    'db_translations'   => 'Datenbankübersetzungen',
+    'key'               => 'Schlüssel',
+    'value'             => 'Wert',
+    'language'          => 'Sprache',
+    'add_translation'   => 'Übersetzung hinzufügen',
+    'save'              => 'Speichern',
+    'delete'            => 'Löschen',
+    'edit'              => 'Bearbeiten',
+    'actions'           => 'Aktionen',
+    'translation_saved' => 'Übersetzung gespeichert!',
+    'translation_updated' => 'Übersetzung aktualisiert!',
+    'translation_deleted' => 'Übersetzung gelöscht!',
+    'browser_detected'  => 'Browsersprache automatisch erkannt',
+    'rtl_note'          => 'Diese Sprache unterstützt die Textrichtung von rechts nach links.',
 ];
