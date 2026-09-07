@@ -81,6 +81,7 @@ Route::put(
 |--------------------------------------------------------------------------
 */
 
+
 Route::delete(
     '/admin/translations/{translation}',
     [AdminController::class, 'destroy']

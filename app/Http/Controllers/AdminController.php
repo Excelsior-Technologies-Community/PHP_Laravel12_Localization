@@ -274,6 +274,7 @@ class AdminController extends Controller
      */
     public function clearCache()
     {
+    
         foreach (
             [
                 'en',

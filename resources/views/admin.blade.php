@@ -334,6 +334,7 @@
 
                         </thead>
 
+                        
                         <tbody>
 
                             @forelse($translations as $translation)

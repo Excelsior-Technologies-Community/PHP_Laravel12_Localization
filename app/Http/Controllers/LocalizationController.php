@@ -346,6 +346,7 @@ class LocalizationController extends Controller
             ],
         ];
 
+        
         [$currency, $fmtLocale] =
             $currencies[$locale]
             ?? ['USD', 'en_US'];
